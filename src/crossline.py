@@ -18,5 +18,6 @@ class CrosslineApp(appier.App):
         self.count += 1
         return "OK"
 
-app = CrosslineApp()
-app.serve(host = "0.0.0.0")
+if __name__ == "__main__":
+    app = CrosslineApp()
+    app.serve(host = "0.0.0.0")
