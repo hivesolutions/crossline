@@ -9,4 +9,3 @@ class WebController(appier.Controller, appier.Mongo):
     def __init__(self, owner, *args, **kwargs):
         appier.Controller.__init__(self, owner, *args, **kwargs)
         appier.Mongo.__init__(self, *args, **kwargs)
-

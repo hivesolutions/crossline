@@ -14,20 +14,20 @@ class ApiController(appier.Controller, appier.Mongo):
     @appier.route("/api/cross", ("GET", "POST"))
     def cross(self):
         db = self.get_db("crossline")
-        
+
         current = datetime.datetime.utcnow()
-         
+
         filter = dict(
             year = current.year,
             month = current.month,
             day = current.day,
             hour = current.hour
         )
-         
-        fact = db.crossline.find_one(filter) or filter 
+
+        fact = db.crossline.find_one(filter) or filter
         count = fact.get("count", 0) + 1
         fact["count"] = count
-        
+
         db.crossline.save(fact)
 
         return count
