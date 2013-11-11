@@ -15,19 +15,6 @@ class CrosslineApp(appier.App):
             name = "crossline",
             service = True
         )
-        self.count = 0
-
-    @appier.route("/", "GET")
-    @appier.route("/counter", "GET")
-    def counter(self):
-        return dict(
-            count = self.count
-        )
-
-    @appier.route("/cross", ("GET", "POST"))
-    def cross(self, data = None):
-        self.count += 1
-        return "OK"
 
 if __name__ == "__main__":
     app = CrosslineApp()

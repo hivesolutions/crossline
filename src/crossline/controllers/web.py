@@ -3,21 +3,10 @@
 
 import appier
 
-class WebController(appier.Controller):
+class WebController(appier.Controller, appier.Mongo):
 
-    @appier.controller("BaseController")
+    @appier.controller("WebController")
     def __init__(self, owner, *args, **kwargs):
         appier.Controller.__init__(self, owner, *args, **kwargs)
+        appier.Mongo.__init__(self, *args, **kwargs)
 
-    @appier.route("/", "GET")
-    @appier.route("/index", "GET")
-    def index(self):
-        return self.template(
-            "index.html.tpl"
-        )
-
-    @appier.route("/hello/<int:name>", "GET")
-    def hello(self, name):
-        return dict(
-            name = name
-        )

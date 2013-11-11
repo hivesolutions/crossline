@@ -2,21 +2,32 @@
 # -*- coding: utf-8 -*-
 
 import appier
+import datetime
 
-class ApiController(appier.Controller):
+class ApiController(appier.Controller, appier.Mongo):
 
-    @appier.controller("BaseController")
+    @appier.controller("ApiController")
     def __init__(self, owner, *args, **kwargs):
         appier.Controller.__init__(self, owner, *args, **kwargs)
+        appier.Mongo.__init__(self, *args, **kwargs)
 
-    @appier.route("/cross", ("GET", "POST"))
-    def index(self):
-        return self.template(
-            "index.html.tpl"
+    @appier.route("/api/cross", ("GET", "POST"))
+    def cross(self):
+        db = self.get_db("crossline")
+        
+        current = datetime.datetime.utcnow()
+         
+        filter = dict(
+            year = current.year,
+            month = current.month,
+            day = current.day,
+            hour = current.hour
         )
+         
+        fact = db.crossline.find_one(filter) or filter 
+        count = fact.get("count", 0) + 1
+        fact["count"] = count
+        
+        db.crossline.save(fact)
 
-    @appier.route("/hello/<int:name>", "GET")
-    def hello(self, name):
-        return dict(
-            name = name
-        )
+        return count

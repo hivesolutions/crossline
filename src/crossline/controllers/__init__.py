@@ -1,8 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import base
-import provider
+import api
+import web
 
-from base import *
-from provider import *
+from api import *
+from web import *
