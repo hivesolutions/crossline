@@ -18,4 +18,4 @@ class CrosslineApp(appier.App):
 
 if __name__ == "__main__":
     app = CrosslineApp()
-    app.serve(env = True)
+    app.serve()
