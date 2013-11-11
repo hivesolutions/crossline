@@ -1,9 +1,20 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import appier
 
 class CrosslineApp(appier.App):
+    """
+    Top level class that is used as the entry point
+    for the crossline application.
+    """
 
     def __init__(self):
-        appier.App.__init__(self, name = "crossline")
+        appier.App.__init__(
+            self,
+            name = "crossline",
+            service = True
+        )
         self.count = 0
 
     @appier.route("/", "GET")
@@ -20,4 +31,4 @@ class CrosslineApp(appier.App):
 
 if __name__ == "__main__":
     app = CrosslineApp()
-    app.serve(host = "0.0.0.0")
+    app.serve(env = True)
