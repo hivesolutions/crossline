@@ -52,9 +52,8 @@ class ApiController(appier.Controller, appier.Mongo):
     def facts(self, app = None):
         db = self.get_db("crossline")
 
-        filter = dict(
-            app = app
-        )
+        filter = dict()
+        if app: filter["app"] = app
 
         cursor = db.facts.find(filter, sort = [("_id", -1)])
         facts = [fact for fact in cursor]
@@ -69,9 +68,8 @@ class ApiController(appier.Controller, appier.Mongo):
     def facts_csv(self, app = None):
         db = self.get_db("crossline")
 
-        filter = dict(
-            app = app
-        )
+        filter = dict()
+        if app: filter["app"] = app
 
         cursor = db.facts.find(filter, sort = [("_id", -1)])
 
