@@ -7,11 +7,12 @@ import datetime
 import cStringIO
 
 ROW_ORDER = (
+    "app",
+    "count"
     "year",
     "month",
     "day",
-    "hour",
-    "count"
+    "hour"
 )
 """ The list defining the sequence of the various
 columns to be used in the creation of the rows """
@@ -76,6 +77,7 @@ class ApiController(appier.Controller, appier.Mongo):
 
         buffer = cStringIO.StringIO()
         writer = csv.writer(buffer, delimiter = ";")
+        writer.writerow(ROW_ORDER)
 
         facts = [fact for fact in cursor]
         for fact in facts:
@@ -86,4 +88,6 @@ class ApiController(appier.Controller, appier.Mongo):
             writer.writerow(row)
 
         data = buffer.getvalue()
+
+        self.set_content_type("text/csv")
         return data
