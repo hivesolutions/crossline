@@ -1,8 +1,20 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+import csv
 import appier
 import datetime
+import cStringIO
+
+ROW_ORDER = (
+    "year",
+    "month",
+    "day",
+    "hour",
+    "count"
+)
+""" The list defining the sequence of the various
+columns to be used in the creation of the rows """
 
 class ApiController(appier.Controller, appier.Mongo):
 
@@ -50,3 +62,28 @@ class ApiController(appier.Controller, appier.Mongo):
         return dict(
             facts = facts
         )
+
+    @appier.route("/api/facts.csv", "GET")
+    @appier.route("/api/<app>/facts.csv", "GET")
+    def facts_csv(self, app = None):
+        db = self.get_db("crossline")
+
+        filter = dict(
+            app = app
+        )
+
+        cursor = db.facts.find(filter)
+
+        buffer = cStringIO.StringIO()
+        writer = csv.writer(buffer, delimiter = ";")
+
+        facts = [fact for fact in cursor]
+        for fact in facts:
+            row = []
+            for name in ROW_ORDER:
+                value = fact[name]
+                row.append(value)
+            writer.writerow(row)
+
+        data = buffer.getvalue()
+        return data
