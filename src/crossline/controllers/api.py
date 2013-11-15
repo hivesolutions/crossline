@@ -56,7 +56,7 @@ class ApiController(appier.Controller, appier.Mongo):
             app = app
         )
 
-        cursor = db.facts.find(filter)
+        cursor = db.facts.find(filter, sort = [("_id", -1)])
         facts = [fact for fact in cursor]
         for fact in facts: del fact["_id"]
 
@@ -73,7 +73,7 @@ class ApiController(appier.Controller, appier.Mongo):
             app = app
         )
 
-        cursor = db.facts.find(filter)
+        cursor = db.facts.find(filter, sort = [("_id", -1)])
 
         buffer = cStringIO.StringIO()
         writer = csv.writer(buffer, delimiter = ";")
