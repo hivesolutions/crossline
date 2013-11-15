@@ -8,11 +8,11 @@ import cStringIO
 
 ROW_ORDER = (
     "app",
-    "count",
     "year",
     "month",
     "day",
-    "hour"
+    "hour",
+    "count"
 )
 """ The list defining the sequence of the various
 columns to be used in the creation of the rows """
