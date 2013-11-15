@@ -8,7 +8,7 @@ import cStringIO
 
 ROW_ORDER = (
     "app",
-    "count"
+    "count",
     "year",
     "month",
     "day",
