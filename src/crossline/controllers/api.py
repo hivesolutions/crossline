@@ -87,5 +87,5 @@ class ApiController(appier.Controller, appier.Mongo):
 
         data = buffer.getvalue()
 
-        self.set_content_type("text/csv")
+        self.content_type("text/csv")
         return data
