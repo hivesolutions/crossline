@@ -50,12 +50,17 @@ class ApiController(appier.Controller, appier.Mongo):
     @appier.route("/api/facts", "GET")
     @appier.route("/api/<app>/facts", "GET")
     def facts(self, app = None):
+        count = self.field("count", 30, cast = int)
         db = self.get_db("crossline")
 
         filter = dict()
         if app: filter["app"] = app
 
-        cursor = db.facts.find(filter, sort = [("_id", -1)])
+        cursor = db.facts.find(
+            filter,
+            sort = [("_id", -1)],
+            limit = count
+        )
         facts = [fact for fact in cursor]
         for fact in facts: del fact["_id"]
 
@@ -66,12 +71,17 @@ class ApiController(appier.Controller, appier.Mongo):
     @appier.route("/api/facts.csv", "GET")
     @appier.route("/api/<app>/facts.csv", "GET")
     def facts_csv(self, app = None):
+        count = self.field("count", 30, cast = int)
         db = self.get_db("crossline")
 
         filter = dict()
         if app: filter["app"] = app
 
-        cursor = db.facts.find(filter, sort = [("_id", -1)])
+        cursor = db.facts.find(
+            filter,
+            sort = [("_id", -1)],
+            limit = count
+        )
 
         buffer = cStringIO.StringIO()
         writer = csv.writer(buffer, delimiter = ";")
