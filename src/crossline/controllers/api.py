@@ -19,7 +19,6 @@ columns to be used in the creation of the rows """
 
 class ApiController(appier.Controller, appier.Mongo):
 
-    @appier.controller("ApiController")
     def __init__(self, owner, *args, **kwargs):
         appier.Controller.__init__(self, owner, *args, **kwargs)
         appier.Mongo.__init__(self, *args, **kwargs)
