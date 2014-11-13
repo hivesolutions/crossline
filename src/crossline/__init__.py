@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import main
+from . import controllers
+from . import main
 
-from main import *
+from .controllers import * 
+from .main import *

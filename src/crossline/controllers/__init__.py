@@ -1,8 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import api
-import web
+from . import api
+from .import web
 
-from api import *
-from web import *
+from .api import ApiController
+from .web import WebController

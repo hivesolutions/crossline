@@ -4,7 +4,6 @@
 import csv
 import appier
 import datetime
-import cStringIO
 
 ROW_ORDER = (
     "app",
@@ -82,7 +81,7 @@ class ApiController(appier.Controller, appier.Mongo):
             limit = count
         )
 
-        buffer = cStringIO.StringIO()
+        buffer = appier.legacy.StringIO()
         writer = csv.writer(buffer, delimiter = ";")
         writer.writerow(ROW_ORDER)
 
