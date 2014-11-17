@@ -4,5 +4,5 @@
 from . import controllers
 from . import main
 
-from .controllers import * 
+from .controllers import *
 from .main import *
