@@ -25,8 +25,8 @@ class ApiController(appier.Controller, appier.Mongo):
         appier.Mongo.__init__(self, *args, **kwargs)
         self.adapters = crossline.util.get_adapters()
 
-    @appier.route("/api/cross", "GET")
-    @appier.route("/api/<app>/cross", "GET")
+    @appier.route("/api/cross", ("GET", "POST"))
+    @appier.route("/api/<app>/cross", ("GET", "POST"))
     def cross(self, app = None):
         db = self.get_db("crossline")
 

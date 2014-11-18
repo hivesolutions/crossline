@@ -13,8 +13,8 @@ class WebController(appier.Controller, appier.Mongo):
         appier.Mongo.__init__(self, *args, **kwargs)
         self.adapters = crossline.util.get_adapters()
 
-    @appier.route("/cross", "GET")
-    @appier.route("/<app>/cross", "GET")
+    @appier.route("/cross", ("GET", "POST"))
+    @appier.route("/<app>/cross", ("GET", "POST"))
     def cross(self, app = None):
         db = self.get_db("crossline")
 
