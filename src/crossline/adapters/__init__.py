@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from . import base
-from . import omni
+from . import omni_adapt
 
 from .base import BaseAdapter
-from .omni import OmniAdapter
+from .omni_adapt import OmniAdapter
