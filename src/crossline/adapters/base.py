@@ -3,5 +3,9 @@
 
 class BaseAdapter(object):
 
+    @classmethod
+    def ready(cls):
+        return True
+
     def cross(self, app = None):
         pass

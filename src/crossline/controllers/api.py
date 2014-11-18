@@ -5,6 +5,8 @@ import csv
 import appier
 import datetime
 
+import crossline.adapters
+
 ROW_ORDER = (
     "app",
     "year",
@@ -16,11 +18,19 @@ ROW_ORDER = (
 """ The list defining the sequence of the various
 columns to be used in the creation of the rows """
 
+ADAPTERS = (
+    crossline.adapters.BaseAdapter,
+    crossline.adapters.OmniAdapter
+)
+""" The sequence defining the complete set of adapter
+classes that may be used for runtime notification """
+
 class ApiController(appier.Controller, appier.Mongo):
 
     def __init__(self, owner, *args, **kwargs):
         appier.Controller.__init__(self, owner, *args, **kwargs)
         appier.Mongo.__init__(self, *args, **kwargs)
+        self.adapters = self._get_adapters()
 
     @appier.route("/api/cross", "GET")
     @appier.route("/api/<app>/cross", "GET")
@@ -97,3 +107,11 @@ class ApiController(appier.Controller, appier.Mongo):
 
         self.content_type("text/csv")
         return data
+
+    def _get_adapters(self):
+        adapters = []
+        for adapter_c in ADAPTERS:
+            if not adapter_c.ready(): continue
+            adapter = adapter_c()
+            adapters.append(adapter)
+        return adapters

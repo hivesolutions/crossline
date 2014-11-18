@@ -4,5 +4,5 @@
 from . import base
 from . import omni
 
-from .api import BaseAdapter
-from .web import OmniAdapter
+from .base import BaseAdapter
+from .omni import OmniAdapter
