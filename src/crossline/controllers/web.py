@@ -4,11 +4,14 @@
 import appier
 import datetime
 
+import crossline.util
+
 class WebController(appier.Controller, appier.Mongo):
 
     def __init__(self, owner, *args, **kwargs):
         appier.Controller.__init__(self, owner, *args, **kwargs)
         appier.Mongo.__init__(self, *args, **kwargs)
+        self.adapters = crossline.util.get_adapters()
 
     @appier.route("/cross", "GET")
     @appier.route("/<app>/cross", "GET")
@@ -30,5 +33,8 @@ class WebController(appier.Controller, appier.Mongo):
         fact["count"] = count
 
         db.facts.save(fact)
+
+        for adapter in self.adapters:
+            adapter.cross(app = app)
 
         return count
