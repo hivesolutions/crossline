@@ -21,7 +21,7 @@ class OmniAdapter(base.BaseAdapter):
 
     def cross(self, app = None):
         api = self.get_api()
-        api.snapshot_apply_entries(dict(
+        api.entries_sales_snapshot(dict(
             entry_chunk = dict(
                 store_id = app,
                 count = 1
