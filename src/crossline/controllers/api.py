@@ -12,7 +12,7 @@ ROW_ORDER = (
     "month",
     "day",
     "hour",
-    "count"
+    "counter"
 )
 """ The list defining the sequence of the various
 columns to be used in the creation of the rows """
@@ -27,7 +27,7 @@ class ApiController(appier.Controller, appier.Mongo):
     @appier.route("/api/cross", ("GET", "POST"))
     @appier.route("/api/<app>/cross", ("GET", "POST"))
     def cross(self, app = None):
-        return crossline.CountFact.increment_s(app, self.adapters)
+        return crossline.CounterFact.increment_s(app, self.adapters)
 
     @appier.route("/api/facts", "GET")
     @appier.route("/api/<app>/facts", "GET")
@@ -38,7 +38,7 @@ class ApiController(appier.Controller, appier.Mongo):
             sort = [("_id", -1)]
         )
         if app: object["app"] = app
-        facts = crossline.CountFact.find(map = True, **object)
+        facts = crossline.CounterFact.find(map = True, **object)
         return facts
 
     @appier.route("/api/facts.csv", "GET")
@@ -50,7 +50,7 @@ class ApiController(appier.Controller, appier.Mongo):
             sort = [("_id", -1)]
         )
         if app: object["app"] = app
-        facts = crossline.CountFact.find(map = True, **object)
+        facts = crossline.CounterFact.find(map = True, **object)
 
         buffer = appier.legacy.StringIO()
         writer = csv.writer(buffer, delimiter = ";")

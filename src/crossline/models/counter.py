@@ -7,9 +7,9 @@ import appier
 
 from . import fact
 
-class CountFact(fact.Fact):
+class CounterFact(fact.Fact):
 
-    count = appier.field(
+    counter = appier.field(
         type = int,
         index = True
     )
@@ -31,13 +31,13 @@ class CountFact(fact.Fact):
             year = current.year,
             month = current.month,
             day = current.day,
-            hour = current.hour,
+            hour = current.hour
         )
 
-        if not hasattr(fact, "count"): fact.count = 0
-        fact.count = fact.count + 1
+        if not hasattr(fact, "count"): fact.couter = 0
+        fact.couter = fact.couter + 1
         fact.save()
 
         for adapter in adapters: adapter.cross(app = app)
 
-        return fact.count
+        return fact.couter
