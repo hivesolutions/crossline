@@ -3,9 +3,8 @@
 
 import csv
 import appier
-import datetime
 
-import crossline.util
+import crossline
 
 ROW_ORDER = (
     "app",
@@ -23,75 +22,40 @@ class ApiController(appier.Controller, appier.Mongo):
     def __init__(self, owner, *args, **kwargs):
         appier.Controller.__init__(self, owner, *args, **kwargs)
         appier.Mongo.__init__(self, *args, **kwargs)
-        self.adapters = crossline.util.get_adapters()
+        self.adapters = crossline.get_adapters()
 
     @appier.route("/api/cross", ("GET", "POST"))
     @appier.route("/api/<app>/cross", ("GET", "POST"))
     def cross(self, app = None):
-        db = self.get_db("crossline")
-
-        current = datetime.datetime.utcnow()
-
-        filter = dict(
-            app = app,
-            year = current.year,
-            month = current.month,
-            day = current.day,
-            hour = current.hour
-        )
-
-        fact = db.facts.find_one(filter) or filter
-        count = fact.get("count", 0) + 1
-        fact["count"] = count
-
-        db.facts.save(fact)
-
-        for adapter in self.adapters:
-            adapter.cross(app = app)
-
-        return count
+        return crossline.CountFact.increment_s(app, self.adapters)
 
     @appier.route("/api/facts", "GET")
     @appier.route("/api/<app>/facts", "GET")
     def facts(self, app = None):
-        count = self.field("count", 30, cast = int)
-        db = self.get_db("crossline")
-
-        filter = dict()
-        if app: filter["app"] = app
-
-        cursor = db.facts.find(
-            filter,
-            sort = [("_id", -1)],
-            limit = count
+        object = appier.get_object(
+            alias = True,
+            find = True,
+            sort = [("_id", -1)]
         )
-        facts = [fact for fact in cursor]
-        for fact in facts: del fact["_id"]
-
-        return dict(
-            facts = facts
-        )
+        if app: object["app"] = app
+        facts = crossline.CountFact.find(map = True, **object)
+        return facts
 
     @appier.route("/api/facts.csv", "GET")
     @appier.route("/api/<app>/facts.csv", "GET")
     def facts_csv(self, app = None):
-        count = self.field("count", 30, cast = int)
-        db = self.get_db("crossline")
-
-        filter = dict()
-        if app: filter["app"] = app
-
-        cursor = db.facts.find(
-            filter,
-            sort = [("_id", -1)],
-            limit = count
+        object = appier.get_object(
+            alias = True,
+            find = True,
+            sort = [("_id", -1)]
         )
+        if app: object["app"] = app
+        facts = crossline.CountFact.find(map = True, **object)
 
         buffer = appier.legacy.StringIO()
         writer = csv.writer(buffer, delimiter = ";")
         writer.writerow(ROW_ORDER)
 
-        facts = [fact for fact in cursor]
         for fact in facts:
             row = []
             for name in ROW_ORDER:

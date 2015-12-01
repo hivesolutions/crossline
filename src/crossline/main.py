@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import appier
+import appier_extras
 
 class CrosslineApp(appier.App):
     """
@@ -13,7 +14,10 @@ class CrosslineApp(appier.App):
         appier.App.__init__(
             self,
             name = "crossline",
-            service = True
+            service = True,
+            parts = (
+                appier_extras.AdminPart,
+            )
         )
 
 if __name__ == "__main__":

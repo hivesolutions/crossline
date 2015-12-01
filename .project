@@ -3,6 +3,8 @@
 	<name>crossline</name>
 	<comment></comment>
 	<projects>
+		<project>appier</project>
+		<project>appier_extras</project>
 		<project>omni_api</project>
 	</projects>
 	<buildSpec>
