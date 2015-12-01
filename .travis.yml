@@ -10,7 +10,6 @@ python:
   - "nightly"
   - "pypy"
   - "pypy3"
-services: mongodb
 install:
   - pip install -r requirements.txt
   - pip install coveralls
