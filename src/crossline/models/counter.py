@@ -34,10 +34,10 @@ class CounterFact(fact.Fact):
             hour = current.hour
         )
 
-        if not hasattr(fact, "count"): fact.couter = 0
-        fact.couter = fact.couter + 1
+        if not hasattr(fact, "counter"): fact.counter = 0
+        fact.counter = fact.counter + 1
         fact.save()
 
         for adapter in adapters: adapter.cross(app = app)
 
-        return fact.couter
+        return fact.counter
