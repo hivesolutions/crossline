@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
+import datetime
 import unittest
 
 import appier
@@ -19,11 +20,40 @@ class CounterTest(unittest.TestCase):
         adapter.drop_db()
 
     def test_basic(self):
-        counter = crossline.CounterFact.increment_s(app = "test")
+        current = datetime.datetime.utcnow()
+
+        counter = crossline.CounterFact.increment_s(
+            app = "test", current = current
+        )
 
         self.assertEqual(counter, 1)
 
         facts = crossline.CounterFact.find()
 
         self.assertEqual(len(facts), 1)
+        self.assertEqual(facts[0].app, "test")
         self.assertEqual(facts[0].counter, 1)
+
+        counter = crossline.CounterFact.increment_s(
+            app = "test", current = current
+        )
+
+        self.assertEqual(counter, 2)
+
+        facts = crossline.CounterFact.find()
+
+        self.assertEqual(len(facts), 1)
+        self.assertEqual(facts[0].app, "test")
+        self.assertEqual(facts[0].counter, 2)
+
+        counter = crossline.CounterFact.increment_s(
+            app = "other", current = current
+        )
+
+        facts = crossline.CounterFact.find(sort = [("app", -1)])
+
+        self.assertEqual(len(facts), 2)
+        self.assertEqual(facts[0].app, "test")
+        self.assertEqual(facts[1].app, "other")
+        self.assertEqual(facts[0].counter, 2)
+        self.assertEqual(facts[1].counter, 1)
