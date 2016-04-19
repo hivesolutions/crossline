@@ -18,8 +18,10 @@ setuptools.setup(
         "crossline",
         "crossline.controllers",
         "crossline.models",
+        "crossline.test",
         "crossline.util"
     ],
+    test_suite = "crossline.test",
     package_dir = {
         "" : os.path.normpath("src")
     },

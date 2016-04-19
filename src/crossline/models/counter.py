@@ -16,7 +16,7 @@ class CounterFact(fact.Fact):
     )
 
     @classmethod
-    def increment_s(cls, app, adapters, *args, **kwargs):
+    def increment_s(cls, app, adapters = [], *args, **kwargs):
         current = datetime.datetime.utcnow()
 
         fact = cls.get(

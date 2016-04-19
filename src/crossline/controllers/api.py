@@ -25,12 +25,12 @@ class ApiController(appier.Controller, appier.Mongo):
         self.adapters = crossline.get_adapters()
 
     @appier.route("/api/cross", ("GET", "POST"))
-    @appier.route("/api/<app>/cross", ("GET", "POST"))
+    @appier.route("/api/<str:app>/cross", ("GET", "POST"))
     def cross(self, app = None):
         return crossline.CounterFact.increment_s(app, self.adapters)
 
     @appier.route("/api/facts", "GET")
-    @appier.route("/api/<app>/facts", "GET")
+    @appier.route("/api/<str:app>/facts", "GET")
     def facts(self, app = None):
         object = appier.get_object(
             alias = True,
@@ -42,7 +42,7 @@ class ApiController(appier.Controller, appier.Mongo):
         return facts
 
     @appier.route("/api/facts.csv", "GET")
-    @appier.route("/api/<app>/facts.csv", "GET")
+    @appier.route("/api/<str:app>/facts.csv", "GET")
     def facts_csv(self, app = None):
         object = appier.get_object(
             alias = True,

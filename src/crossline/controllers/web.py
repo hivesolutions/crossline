@@ -13,6 +13,6 @@ class WebController(appier.Controller, appier.Mongo):
         self.adapters = crossline.get_adapters()
 
     @appier.route("/cross", ("GET", "POST"))
-    @appier.route("/<app>/cross", ("GET", "POST"))
+    @appier.route("/<str:app>/cross", ("GET", "POST"))
     def cross(self, app = None):
         return crossline.CounterFact.increment_s(app, self.adapters)
