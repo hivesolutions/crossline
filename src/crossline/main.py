@@ -24,3 +24,5 @@ class CrosslineApp(appier.APIApp):
 if __name__ == "__main__":
     app = CrosslineApp()
     app.serve()
+else:
+    __path__ = []
