@@ -4,5 +4,5 @@
 from . import api
 from . import web
 
-from .api import ApiController
+from .api import APIController
 from .web import WebController

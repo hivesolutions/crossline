@@ -17,7 +17,7 @@ ROW_ORDER = (
 """ The list defining the sequence of the various
 columns to be used in the creation of the rows """
 
-class ApiController(appier.Controller, appier.Mongo):
+class APIController(appier.Controller, appier.Mongo):
 
     def __init__(self, owner, *args, **kwargs):
         appier.Controller.__init__(self, owner, *args, **kwargs)

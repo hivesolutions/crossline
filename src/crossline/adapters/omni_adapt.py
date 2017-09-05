@@ -30,7 +30,7 @@ class OmniAdapter(base.BaseAdapter):
 
     def get_api(self):
         if self._api: return self._api
-        self._api = omni.Api(
+        self._api = omni.API(
             base_url = appier.conf("OMNI_BASE_URL"),
             username = appier.conf("OMNI_USERNAME"),
             password = appier.conf("OMNI_PASSWORD")
