@@ -9,3 +9,7 @@ class CrosslineBase(appier_extras.admin.Base):
     app = appier.field(
         index = "hashed"
     )
+
+    @classmethod
+    def is_abstract(cls):
+        return True

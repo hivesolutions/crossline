@@ -1,10 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+from . import facts
+from . import mixins
 from . import base
-from . import counter
-from . import fact
 
+from .facts import *
+from .mixins import *
 from .base import CrosslineBase
-from .counter import CounterFact
-from .fact import Fact
