@@ -7,5 +7,5 @@ import appier_extras
 class CrosslineBase(appier_extras.admin.Base):
 
     app = appier.field(
-        index = True
+        index = "hashed"
     )

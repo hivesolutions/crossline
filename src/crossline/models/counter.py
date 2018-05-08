@@ -11,7 +11,6 @@ class CounterFact(fact.Fact):
 
     counter = appier.field(
         type = int,
-        index = True,
         initial = 0
     )
 

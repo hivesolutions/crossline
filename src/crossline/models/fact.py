@@ -9,20 +9,20 @@ class Fact(base.CrosslineBase):
 
     year = appier.field(
         type = int,
-        index = True
+        index = "hashed"
     )
 
     month = appier.field(
         type = int,
-        index = True
+        index = "hashed"
     )
 
     day = appier.field(
         type = int,
-        index = True
+        index = "hashed"
     )
 
     hour = appier.field(
         type = int,
-        index = True
+        index = "hashed"
     )
