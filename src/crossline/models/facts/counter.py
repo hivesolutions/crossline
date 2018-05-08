@@ -11,7 +11,9 @@ class CounterFact(fact.Fact):
 
     counter = appier.field(
         type = int,
-        initial = 0
+        initial = 0,
+        observations = """The integer counter value that should
+        be incremented for every single interaction"""
     )
 
     @classmethod
