@@ -3,9 +3,7 @@
 
 import appier
 
-from . import base
-
-class Fact(base.CrosslineBase):
+class Day(appier.Model):
 
     year = appier.field(
         type = int,
@@ -19,10 +17,22 @@ class Fact(base.CrosslineBase):
 
     day = appier.field(
         type = int,
-        index = "hashed"
+        index = "hashed",
+        immutable = True
     )
 
     hour = appier.field(
         type = int,
-        index = "hashed"
+        index = "hashed",
+        immutable = True
     )
+
+    timestamp = appier.field(
+        type = int,
+        index = "all",
+        immutable = True
+    )
+
+    @classmethod
+    def is_abstract(cls):
+        return True

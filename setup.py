@@ -18,6 +18,8 @@ setuptools.setup(
         "crossline",
         "crossline.controllers",
         "crossline.models",
+        "crossline.models.facts",
+        "crossline.models.mixins",
         "crossline.test",
         "crossline.util"
     ],
