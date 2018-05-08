@@ -31,6 +31,7 @@ class APIController(appier.Controller, appier.Mongo):
 
     @appier.route("/api/facts", "GET")
     @appier.route("/api/<str:app>/facts", "GET")
+    @appier.ensure(token = "admin")
     def facts(self, app = None):
         object = appier.get_object(
             alias = True,
@@ -43,6 +44,7 @@ class APIController(appier.Controller, appier.Mongo):
 
     @appier.route("/api/facts.csv", "GET")
     @appier.route("/api/<str:app>/facts.csv", "GET")
+    @appier.ensure(token = "admin")
     def facts_csv(self, app = None):
         object = appier.get_object(
             alias = True,
