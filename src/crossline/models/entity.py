@@ -42,6 +42,14 @@ class Entity(base.CrosslineBase):
         return ["identifier", "key", "app"]
 
     @classmethod
+    @appier.operation(
+        name = "Verify",
+        parameters = (
+            ("Identifier", "identifier", str),
+            ("Key", "key", str),
+            ("App", "app", str, None)
+        )
+    )
     def verify_g(cls, identifier, key, app = None):
         entity = cls.get(identifier = identifier, app = app)
         appier.verify(
