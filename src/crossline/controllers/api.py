@@ -24,8 +24,8 @@ class APIController(appier.Controller, appier.Mongo):
         appier.Mongo.__init__(self, *args, **kwargs)
         self.adapters = crossline.get_adapters()
 
-    @appier.route("/api/cross", ("GET", "POST"))
-    @appier.route("/api/<str:app>/cross", ("GET", "POST"))
+    @appier.route("/api/cross", ("GET", "POST"), json = True)
+    @appier.route("/api/<str:app>/cross", ("GET", "POST"), json = True)
     def cross(self, app = None):
         return crossline.CounterFact.increment_s(
             app,
@@ -34,8 +34,8 @@ class APIController(appier.Controller, appier.Mongo):
             payload = appier.get_object()
         )
 
-    @appier.route("/api/enter", ("GET", "POST"))
-    @appier.route("/api/<str:app>/enter", ("GET", "POST"))
+    @appier.route("/api/enter", ("GET", "POST"), json = True)
+    @appier.route("/api/<str:app>/enter", ("GET", "POST"), json = True)
     def enter(self, app = None):
         return crossline.CounterFact.increment_s(
             app,
@@ -44,8 +44,8 @@ class APIController(appier.Controller, appier.Mongo):
             payload = appier.get_object()
         )
 
-    @appier.route("/api/facts", "GET")
-    @appier.route("/api/<str:app>/facts", "GET")
+    @appier.route("/api/facts", "GET", json = True)
+    @appier.route("/api/<str:app>/facts", "GET", json = True)
     @appier.ensure(token = "admin")
     def facts(self, app = None):
         object = appier.get_object(
@@ -57,8 +57,8 @@ class APIController(appier.Controller, appier.Mongo):
         facts = crossline.CounterFact.find(map = True, **object)
         return facts
 
-    @appier.route("/api/facts.csv", "GET")
-    @appier.route("/api/<str:app>/facts.csv", "GET")
+    @appier.route("/api/facts.csv", "GET", json = True)
+    @appier.route("/api/<str:app>/facts.csv", "GET", json = True)
     @appier.ensure(token = "admin")
     def facts_csv(self, app = None):
         object = appier.get_object(
