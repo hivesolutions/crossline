@@ -26,7 +26,7 @@ class CounterTest(unittest.TestCase):
             app = "test", current = current
         )
 
-        self.assertEqual(counter["action"], "count")
+        self.assertEqual(counter["action"], "cross")
         self.assertEqual(counter["count"], 1)
         self.assertEqual(counter["app"], "test")
 
@@ -40,7 +40,7 @@ class CounterTest(unittest.TestCase):
             app = "test", current = current
         )
 
-        self.assertEqual(counter["action"], "count")
+        self.assertEqual(counter["action"], "cross")
         self.assertEqual(counter["count"], 2)
         self.assertEqual(counter["app"], "test")
 
