@@ -24,10 +24,10 @@ class WebController(appier.Controller, appier.Mongo):
 
     @appier.route("/enter", ("GET", "POST"))
     @appier.route("/<str:app>/enter", ("GET", "POST"))
-    def entry(self, app = None):
+    def enter(self, app = None):
         return crossline.CounterFact.increment_s(
             app,
             adapters = self.adapters,
-            action = "entry",
+            action = "enter",
             payload = appier.get_object()
         )

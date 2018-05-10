@@ -11,4 +11,6 @@ class Fact(base.CrosslineBase, mixins.Day):
     usage and exploration of facts.
     """
 
-    pass
+    @classmethod
+    def is_abstract(cls):
+        return True

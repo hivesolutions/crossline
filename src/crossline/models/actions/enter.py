@@ -6,7 +6,7 @@ import appier
 from . import action
 from .. import entity
 
-class EntryAction(action.Action):
+class EnterAction(action.Action):
 
     entity = appier.field(
         type = appier.reference(
@@ -22,8 +22,8 @@ class EntryAction(action.Action):
         return ["created", "entity", "app"]
 
     @classmethod
-    def entry_s(cls, identifier, key = None, verify = False):
+    def enter_s(cls, identifier, key = None, verify = False):
         if verify: entity.Entity.verify_g(identifier, key)
-        entry = cls(entity = identifier)
-        entry.save()
-        return entry
+        enter = cls(entity = identifier)
+        enter.save()
+        return enter

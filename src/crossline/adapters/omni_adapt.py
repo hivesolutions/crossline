@@ -28,7 +28,7 @@ class OmniAdapter(base.BaseAdapter):
             )
         ))
 
-    def entry(self, app = None, *args, **kwargs):
+    def enter(self, app = None, *args, **kwargs):
         pass
 
     def get_api(self):

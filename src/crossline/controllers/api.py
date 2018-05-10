@@ -27,7 +27,22 @@ class APIController(appier.Controller, appier.Mongo):
     @appier.route("/api/cross", ("GET", "POST"))
     @appier.route("/api/<str:app>/cross", ("GET", "POST"))
     def cross(self, app = None):
-        return crossline.CounterFact.increment_s(app, self.adapters)
+        return crossline.CounterFact.increment_s(
+            app,
+            adapters = self.adapters,
+            action = "cross",
+            payload = appier.get_object()
+        )
+
+    @appier.route("/api/enter", ("GET", "POST"))
+    @appier.route("/api/<str:app>/enter", ("GET", "POST"))
+    def enter(self, app = None):
+        return crossline.CounterFact.increment_s(
+            app,
+            adapters = self.adapters,
+            action = "enter",
+            payload = appier.get_object()
+        )
 
     @appier.route("/api/facts", "GET")
     @appier.route("/api/<str:app>/facts", "GET")

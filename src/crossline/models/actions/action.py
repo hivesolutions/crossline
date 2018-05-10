@@ -15,6 +15,14 @@ class Action(base.CrosslineBase):
         immutable = True
     )
 
+    @classmethod
+    def list_names(cls):
+        return ["created", "app"]
+
+    @classmethod
+    def is_abstract(cls):
+        return True
+
     def pre_create(self):
         base.CrosslineBase.pre_create(self)
         self.timestamp = int(time.time())

@@ -3,8 +3,8 @@
 
 from . import action
 from . import cross
-from . import entry
+from . import enter
 
 from .action import Action
 from .cross import CrossAction
-from .entry import EntryAction
+from .enter import EnterAction

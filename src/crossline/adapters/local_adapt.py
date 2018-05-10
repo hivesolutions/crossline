@@ -18,9 +18,9 @@ class LocalAdapter(base.BaseAdapter):
     def cross(self, app = None, *args, **kwargs):
         pass
 
-    def entry(self, app = None, *args, **kwargs):
+    def enter(self, app = None, *args, **kwargs):
         payload = kwargs.get("payload", {})
         entity = payload.get("entity", None)
         key = payload.get("key", None)
         if not entity or not key: return
-        crossline.EntryAction.entry_s(entity, key = key, verify = True)
+        crossline.EnterAction.enter_s(entity, key = key, verify = True)
