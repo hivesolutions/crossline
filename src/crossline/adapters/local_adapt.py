@@ -21,5 +21,6 @@ class LocalAdapter(base.BaseAdapter):
     def entry(self, app = None, *args, **kwargs):
         payload = kwargs.get("payload", {})
         entity = payload.get("entity", None)
-        if not entity: return
-        crossline.EntryAction.entry_s(entity)
+        key = payload.get("key", None)
+        if not entity or not key: return
+        crossline.EntryAction.entry_s(entity, key = key, verify = True)

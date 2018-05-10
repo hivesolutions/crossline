@@ -22,7 +22,8 @@ class EntryAction(action.Action):
         return ["created", "entity", "app"]
 
     @classmethod
-    def entry_s(cls, entity):
-        entry = cls(entity = entity)
+    def entry_s(cls, identifier, key = None, verify = False):
+        if verify: entity.Entity.verify_g(identifier, key)
+        entry = cls(entity = identifier)
         entry.save()
         return entry
