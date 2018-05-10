@@ -36,6 +36,10 @@ class Entity(base.CrosslineBase):
             appier.not_duplicate("identifier", cls._name()),
         ]
 
+    @classmethod
+    def _plural(cls):
+        return "Entities"
+
     def pre_create(self):
         base.CrosslineBase.pre_create(self)
         self.key = self.secret(hash = hashlib.md5)

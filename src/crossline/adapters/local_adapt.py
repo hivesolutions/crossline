@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+import crossline
+
 from . import base
 
 class LocalAdapter(base.BaseAdapter):
@@ -17,4 +19,7 @@ class LocalAdapter(base.BaseAdapter):
         pass
 
     def entry(self, app = None, *args, **kwargs):
-        pass
+        payload = kwargs.get("payload", {})
+        entity = payload.get("entity", None)
+        if not entity: return
+        crossline.EntryAction.entry_s(entity)

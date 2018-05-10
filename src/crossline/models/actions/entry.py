@@ -21,3 +21,4 @@ class EntryAction(action.Action):
     def entry_s(cls, entity):
         entry = cls(entity = entity)
         entry.save()
+        return entry
