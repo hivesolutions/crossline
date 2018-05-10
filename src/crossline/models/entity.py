@@ -50,6 +50,17 @@ class Entity(base.CrosslineBase):
         )
 
     @classmethod
+    @appier.operation(
+        name = "Create",
+        parameters = (("Identifier", "identifier", str),),
+        factory = True
+    )
+    def create_s(cls, identifier):
+        entity = cls(identifier = identifier)
+        entity.save()
+        return entity
+
+    @classmethod
     def _plural(cls):
         return "Entities"
 
