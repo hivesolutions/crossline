@@ -64,4 +64,8 @@ class CounterFact(fact.Fact):
             method = getattr(adapter, action)
             method(app = app, **kwargs)
 
-        return fact.counter
+        return dict(
+            action = action,
+            count = fact.counter,
+            app = app
+        )
