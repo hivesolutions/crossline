@@ -8,6 +8,11 @@ import appier
 from . import fact
 
 class CounterFact(fact.Fact):
+    """
+    Counter fact that handles the cross operation counting, meaning
+    that whenever there's a new cross action the counter value
+    should be incremented.
+    """
 
     counter = appier.field(
         type = int,
@@ -16,12 +21,18 @@ class CounterFact(fact.Fact):
         be incremented for every single interaction"""
     )
 
+    action = appier.field(
+        index = "hashed",
+        immutable = True
+    )
+
     @classmethod
     def increment_s(
         cls,
         app,
         adapters = [],
         current = None,
+        action = "cross",
         *args,
         **kwargs
     ):
@@ -29,6 +40,7 @@ class CounterFact(fact.Fact):
 
         fact = cls.get(
             app = app,
+            action = action,
             year = current.year,
             month = current.month,
             day = current.day,
@@ -37,6 +49,7 @@ class CounterFact(fact.Fact):
         )
         if not fact: fact = cls(
             app = app,
+            action = action,
             year = current.year,
             month = current.month,
             day = current.day,
@@ -47,6 +60,8 @@ class CounterFact(fact.Fact):
         fact.counter = fact.counter + 1
         fact.save()
 
-        for adapter in adapters: adapter.cross(app = app)
+        for adapter in adapters:
+            method = getattr(adapter, action)
+            method(app = app, **kwargs)
 
         return fact.counter

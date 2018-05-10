@@ -19,7 +19,7 @@ class OmniAdapter(base.BaseAdapter):
         password = appier.conf("OMNI_PASSWORD")
         return True if base_url and username and password else False
 
-    def cross(self, app = None):
+    def cross(self, app = None, *args, **kwargs):
         api = self.get_api()
         api.entries_sales_snapshot(dict(
             entry_chunk = dict(
@@ -27,6 +27,9 @@ class OmniAdapter(base.BaseAdapter):
                 count = 1
             )
         ))
+
+    def entry(self, app = None, *args, **kwargs):
+        raise appier.NotImplementedError()
 
     def get_api(self):
         if self._api: return self._api
