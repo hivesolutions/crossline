@@ -20,6 +20,10 @@ class Action(base.CrosslineBase):
         return ["created", "app"]
 
     @classmethod
+    def order_name(cls):
+        return ["id", -1]
+
+    @classmethod
     def is_abstract(cls):
         return True
 
