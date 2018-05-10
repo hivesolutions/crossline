@@ -11,7 +11,7 @@ class LocalAdapter(base.BaseAdapter):
 
     @classmethod
     def ready(cls):
-        pass
+        return True
 
     def cross(self, app = None, *args, **kwargs):
         pass
