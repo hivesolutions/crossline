@@ -18,6 +18,10 @@ class EntryAction(action.Action):
     )
 
     @classmethod
+    def list_names(cls):
+        return ["created", "entity", "app"]
+
+    @classmethod
     def entry_s(cls, entity):
         entry = cls(entity = entity)
         entry.save()

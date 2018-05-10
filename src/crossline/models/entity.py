@@ -17,6 +17,7 @@ class Entity(base.CrosslineBase):
 
     identifier = appier.field(
         index = "hashed",
+        default = True,
         immutable = True
     )
 

@@ -18,7 +18,8 @@ class WebController(appier.Controller, appier.Mongo):
         return crossline.CounterFact.increment_s(
             app,
             adapters = self.adapters,
-            action = "cross"
+            action = "cross",
+            payload = appier.get_object()
         )
 
     @appier.route("/enter", ("GET", "POST"))
@@ -28,5 +29,5 @@ class WebController(appier.Controller, appier.Mongo):
             app,
             adapters = self.adapters,
             action = "entry",
-            payload = self.request.get_data()
+            payload = appier.get_object()
         )
