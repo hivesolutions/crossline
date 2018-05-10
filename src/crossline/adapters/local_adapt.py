@@ -1,16 +1,20 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import appier
+from . import base
 
-class BaseAdapter(object):
+class LocalAdapter(base.BaseAdapter):
+
+    def __init__(self):
+        base.BaseAdapter.__init__(self)
+        self._api = None
 
     @classmethod
     def ready(cls):
-        return True
+        pass
 
     def cross(self, app = None, *args, **kwargs):
-        raise appier.NotImplementedError()
+        pass
 
     def entry(self, app = None, *args, **kwargs):
-        raise appier.NotImplementedError()
+        pass

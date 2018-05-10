@@ -29,7 +29,7 @@ class OmniAdapter(base.BaseAdapter):
         ))
 
     def entry(self, app = None, *args, **kwargs):
-        raise appier.NotImplementedError()
+        pass
 
     def get_api(self):
         if self._api: return self._api
