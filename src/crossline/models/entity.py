@@ -37,6 +37,10 @@ class Entity(base.CrosslineBase):
         ]
 
     @classmethod
+    def list_names(cls):
+        return ["identifier", "key", "app"]
+
+    @classmethod
     def _plural(cls):
         return "Entities"
 
