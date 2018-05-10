@@ -26,7 +26,9 @@ class CounterTest(unittest.TestCase):
             app = "test", current = current
         )
 
-        self.assertEqual(counter, 1)
+        self.assertEqual(counter["action"], "count")
+        self.assertEqual(counter["count"], 1)
+        self.assertEqual(counter["app"], "test")
 
         facts = crossline.CounterFact.find()
 
@@ -38,7 +40,9 @@ class CounterTest(unittest.TestCase):
             app = "test", current = current
         )
 
-        self.assertEqual(counter, 2)
+        self.assertEqual(counter["action"], "count")
+        self.assertEqual(counter["count"], 2)
+        self.assertEqual(counter["app"], "test")
 
         facts = crossline.CounterFact.find()
 
