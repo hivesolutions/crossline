@@ -4,7 +4,7 @@
 import crossline.adapters
 
 ADAPTERS = (
-    crossline.adapters.BaseAdapter,
+    crossline.adapters.LocalAdapter,
     crossline.adapters.OmniAdapter
 )
 """ The sequence defining the complete set of adapter
