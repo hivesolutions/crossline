@@ -4,14 +4,14 @@
 import appier
 import appier_extras
 
-class CrosslineApp(appier.APIApp):
+class CrosslineApp(appier.WebApp):
     """
     Top level class that is used as the entry point
     for the crossline application.
     """
 
     def __init__(self, *args, **kwargs):
-        appier.APIApp.__init__(
+        appier.WebApp.__init__(
             self,
             name = "crossline",
             service = True,
