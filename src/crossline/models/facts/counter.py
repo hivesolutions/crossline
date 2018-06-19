@@ -25,6 +25,8 @@ class CounterFact(fact.Fact):
         index = "hashed",
         immutable = True
     )
+    """ The name of the action associated with the current counter
+    should be as descriptive as possible """
 
     @classmethod
     def increment_s(
@@ -60,12 +62,14 @@ class CounterFact(fact.Fact):
         fact.counter = fact.counter + 1
         fact.save()
 
-        for adapter in adapters:
-            method = getattr(adapter, action)
-            method(app = app, **kwargs)
-
-        return dict(
+        info = dict(
             action = action,
             count = fact.counter,
             app = app
         )
+
+        for adapter in adapters:
+            method = getattr(adapter, action)
+            method(info = info, app = app, **kwargs)
+
+        return info

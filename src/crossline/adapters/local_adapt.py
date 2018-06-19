@@ -15,12 +15,19 @@ class LocalAdapter(base.BaseAdapter):
     def ready(cls):
         return True
 
-    def cross(self, app = None, *args, **kwargs):
+    def cross(self, info = None, app = None, *args, **kwargs):
         pass
 
-    def enter(self, app = None, *args, **kwargs):
+    def enter(self, info = None, app = None, *args, **kwargs):
+        info = info or dict()
         payload = kwargs.get("payload", {})
         entity = payload.get("entity", None)
         key = payload.get("key", None)
         if not entity or not key: return
-        crossline.EnterAction.enter_s(entity, key = key, verify = True)
+        enter = crossline.EnterAction.enter_s(entity, key = key, verify = True)
+        info.update(
+            enter = dict(
+                timestamp = enter.timestamp,
+                entity = enter.entity.identifier
+            )
+        )
