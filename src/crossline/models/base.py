@@ -13,3 +13,12 @@ class CrosslineBase(appier_extras.admin.Base):
     @classmethod
     def is_abstract(cls):
         return True
+
+    @appier.operation(
+        name = "Set App",
+        parameters = (("App", "app", str),)
+    )
+    def set_app_s(self, app = None):
+        app = app or None
+        self.app = app
+        self.save()
