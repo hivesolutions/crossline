@@ -79,7 +79,7 @@ class Entity(base.CrosslineBase):
     @appier.view(name = "Enter Actions")
     def enter_actions_v(self, *args, **kwargs):
         from .actions import enter
-        kwargs["sort"] = kwargs.get("sort", [("created", -1)])
+        kwargs["sort"] = kwargs.get("sort", [("timestamp", -1)])
         kwargs.update(entity = self.identifier)
         return appier.lazy_dict(
             model = enter.EnterAction,
