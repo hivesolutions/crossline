@@ -19,7 +19,7 @@ class EnterAction(action.Action):
 
     @classmethod
     def list_names(cls):
-        return ["created", "entity", "app"]
+        return ["timestamp", "entity", "app"]
 
     @classmethod
     def enter_s(cls, identifier, key = None, verify = False):

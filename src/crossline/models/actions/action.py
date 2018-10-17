@@ -21,7 +21,7 @@ class Action(base.CrosslineBase):
 
     @classmethod
     def list_names(cls):
-        return ["created", "app"]
+        return ["timestamp", "app"]
 
     @classmethod
     def order_name(cls):
