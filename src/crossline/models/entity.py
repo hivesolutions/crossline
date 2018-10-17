@@ -75,3 +75,15 @@ class Entity(base.CrosslineBase):
     def pre_create(self):
         base.CrosslineBase.pre_create(self)
         self.key = self.secret(hash = hashlib.md5)
+
+    @appier.view(name = "Enter Actions")
+    def enter_actions_v(self, *args, **kwargs):
+        from .actions import enter
+        kwargs["sort"] = kwargs.get("sort", [("created", -1)])
+        kwargs.update(entity = self.identifier)
+        return appier.lazy_dict(
+            model = enter.EnterAction,
+            kwargs = kwargs,
+            entities = appier.lazy(lambda: enter.EnterAction.find(*args, **kwargs)),
+            page = appier.lazy(lambda: enter.EnterAction.paginate(*args, **kwargs))
+        )
