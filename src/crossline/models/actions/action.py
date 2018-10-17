@@ -12,7 +12,11 @@ class Action(base.CrosslineBase):
     timestamp = appier.field(
         type = int,
         index = "all",
-        immutable = True
+        safe = True,
+        immutable = True,
+        meta = "datetime",
+        observations = """The snapshot timestamp for when
+        the current action has occurred"""
     )
 
     @classmethod
