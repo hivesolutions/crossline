@@ -20,7 +20,7 @@ class PicaAdapter(base.BaseAdapter):
     @classmethod
     def ready(cls):
         base_url = appier.conf("PICA_BASE_URL", "https://picaponto.pt/")
-        company = appier.conf("PICA_COMPANY", None, cast = int)
+        company = appier.conf("PICA_COMPANY", cast = int)
         return True if base_url and company else False
 
     def cross(self, info = None, app = None, *args, **kwargs):
