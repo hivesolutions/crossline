@@ -5,7 +5,8 @@ import crossline.adapters
 
 ADAPTERS = (
     crossline.adapters.LocalAdapter,
-    crossline.adapters.OmniAdapter
+    crossline.adapters.OmniAdapter,
+    crossline.adapters.PicaAdapter
 )
 """ The sequence defining the complete set of adapter
 classes that may be used for runtime notification """
