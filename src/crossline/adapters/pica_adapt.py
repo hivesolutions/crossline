@@ -33,6 +33,6 @@ class PicaAdapter(base.BaseAdapter):
             base_url + "ponto/ajax_add",
             empresa_id = company,
             codigo = 123, #@todo be used the one from metadata
-            senha = 123123123, #@todo be used the one from metadata
-            tipo_movimento = "Entrada", #todo should be inferred according to some rules
+            senha = 123123, #@todo be used the one from metadata
+            tipo_movimento = "Entrada" #todo should be inferred according to some rules
         )
