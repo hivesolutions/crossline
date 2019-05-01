@@ -59,8 +59,13 @@ class PicaAdapter(base.BaseAdapter):
         # information on the external service
         appier.post(
             base_url + "ponto/ajax_add",
-            empresa_id = company,
-            codigo = code,
-            senha = secret,
-            tipo_movimento = "Entrada" #todo should be inferred according to some rules
+            params = dict(
+                empresa_id = company,
+                codigo = code,
+                senha = secret,
+                tipo_movimento = self._res_movement(entity)
+            )
         )
+
+    def _res_movement(self, entity):
+        return "Entrada"
