@@ -1,6 +1,6 @@
 # [Crossline](http://crossline.hive.pt)
 
-Simple counting infra-structure to be used as a data storage.
+Simple event pipping and storing infra-structure to be for crossing, entering and other events.
 
 ## Adapters
 
