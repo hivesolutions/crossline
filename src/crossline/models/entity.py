@@ -42,6 +42,10 @@ class Entity(base.CrosslineBase):
         return ["identifier", "key", "app"]
 
     @classmethod
+    def get_by_id(cls, identifier):
+        return cls.get(identifier = identifier)
+
+    @classmethod
     @appier.operation(
         name = "Verify",
         parameters = (
