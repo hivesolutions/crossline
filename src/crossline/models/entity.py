@@ -42,8 +42,8 @@ class Entity(base.CrosslineBase):
         return ["identifier", "key", "app"]
 
     @classmethod
-    def get_by_id(cls, identifier):
-        return cls.get(identifier = identifier)
+    def get_by_id(cls, identifier, app = None):
+        return cls.get(identifier = identifier, app = None)
 
     @classmethod
     @appier.operation(

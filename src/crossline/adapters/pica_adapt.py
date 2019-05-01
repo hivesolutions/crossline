@@ -3,6 +3,8 @@
 
 import appier
 
+import crossline
+
 from . import base
 
 class PicaAdapter(base.BaseAdapter):
@@ -38,14 +40,14 @@ class PicaAdapter(base.BaseAdapter):
 
         # ensures that the entity being used is a legitimate one, meaning
         # that the key that is provided is the expected one
-        entity.Entity.verify_g(entity, key)
+        crossline.Entity.verify_g(entity, key)
 
         # retrieves the entity instance from the database and tries to
         # gather both the external service code and secret values in case
         # they are not available returns the control flow immediately
-        entity_e = entity.Entity.get_by_id(entity)
-        code = entity_e.meta.get("pica.codigo")
-        secret = entity_e.meta.get("pica.senha")
+        entity_e = crossline.Entity.get_by_id(entity)
+        code = entity_e.meta.get("pica:codigo")
+        secret = entity_e.meta.get("pica:senha")
         if not code or not secret: return
 
         # retrieves the global configuration values that are going to be used
