@@ -80,6 +80,18 @@ class Entity(base.CrosslineBase):
         base.CrosslineBase.pre_create(self)
         self.key = self.secret(hash = hashlib.md5)
 
+    @appier.operation(
+        name = "Set PicaPonto.pt",
+        parameters = (
+            ("Code", "code", int),
+            ("Secret", "secret", int)
+        )
+    )
+    def set_pica_s(self, code, secret):
+        self.meta["pica:codigo"] = code
+        self.meta["pica:senha"] = secret
+        self.save()
+
     @appier.view(name = "Enter Actions")
     def enter_actions_v(self, *args, **kwargs):
         from .actions import enter
