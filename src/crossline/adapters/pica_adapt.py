@@ -53,7 +53,7 @@ class PicaAdapter(base.BaseAdapter):
         # retrieves the global configuration values that are going to be used
         # in the HTTP POST operation to the back-end service
         base_url = appier.conf("PICA_BASE_URL", "https://picaponto.pt/")
-        company = appier.conf("PICA_COMPANY", None, cast = int)
+        company = appier.conf("PICA_COMPANY", cast = int)
 
         # runs the concrete HTTP operation, effectively persisting the
         # information on the external service
