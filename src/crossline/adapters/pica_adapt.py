@@ -89,5 +89,5 @@ class PicaAdapter(base.BaseAdapter):
         if timestamp - latest.timestamp < cls.DUPLICATE_THRESHOLD: return "Duplicado"
         if timestamp - latest.timestamp > cls.TURN_THRESHOLD: return "Entrada"
         movement = latest.info.get("pica:movimento", "Entrada")
-        if movement == "Entrada": return "Saída"
+        if movement == "Entrada": return "Saida"
         return "Entrada"
