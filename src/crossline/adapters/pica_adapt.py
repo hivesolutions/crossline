@@ -17,7 +17,7 @@ class PicaAdapter(base.BaseAdapter):
     :see: https://picaponto.pt
     """
 
-    DUPLICATE_THRESHOLD = 120
+    DUPLICATE_THRESHOLD = 60
 
     TURN_THRESHOLD = 50400
 
