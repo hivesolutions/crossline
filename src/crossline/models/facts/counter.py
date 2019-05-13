@@ -49,14 +49,15 @@ class CounterFact(fact.Fact):
             hour = current.hour,
             raise_e = False
         )
-        if not fact: fact = cls(
-            app = app,
-            action = action,
-            year = current.year,
-            month = current.month,
-            day = current.day,
-            hour = current.hour
-        )
+        if not fact:
+            fact = cls(
+                app = app,
+                action = action,
+                year = current.year,
+                month = current.month,
+                day = current.day,
+                hour = current.hour
+            )
 
         if not hasattr(fact, "counter"): fact.counter = 0
         fact.counter = fact.counter + 1

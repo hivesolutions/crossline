@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+import time
+
 import appier
 
 import crossline
@@ -55,6 +57,12 @@ class PicaAdapter(base.BaseAdapter):
         base_url = appier.conf("PICA_BASE_URL", "https://picaponto.pt/")
         company = appier.conf("PICA_COMPANY", cast = int)
 
+        # resolves the kind of movement in context and then sets it under the
+        # info dictionary, to be stored latter
+        movement = self._res_movement(entity)
+        if not movement in ("Duplicado",): info["pica:movimento"] = movement
+        info["save"] &= info.get("save", True) and not movement in ("Duplicado",)
+
         # runs the concrete HTTP operation, effectively persisting the
         # information on the external service
         appier.post(
@@ -63,9 +71,16 @@ class PicaAdapter(base.BaseAdapter):
                 empresa_id = company,
                 codigo = code,
                 senha = secret,
-                tipo_movimento = self._res_movement(entity)
+                tipo_movimento = movement
             )
         )
 
-    def _res_movement(self, entity):
+    def _res_movement(self, entity, timestamp = None):
+        timestamp = timestamp or time.time()
+        latest = crossline.EnterAction.latest(entity)
+        if not latest: return "Entrada"
+        if timestamp - latest.timestamp < 120: return "Duplicado"
+        if timestamp - latest.timestamp > 86400: return "Entrada"
+        movement = latest.info.get("pica:movimento", "Entrada")
+        if movement == "Entrada": return "Saída"
         return "Entrada"

@@ -19,6 +19,12 @@ class Action(base.CrosslineBase):
         the current action has occurred"""
     )
 
+    info = appier.field(
+        type = dict
+    )
+    """ Extra information associated with the action that
+    can be used as a storage media """
+
     @classmethod
     def list_names(cls):
         return ["timestamp", "app"]
@@ -31,6 +37,11 @@ class Action(base.CrosslineBase):
     def is_abstract(cls):
         return True
 
+    @classmethod
+    def get_by_entity(cls, entity, *args, **kwargs):
+        return cls.get_e(entity = entity, *args, **kwargs)
+
     def pre_create(self):
         base.CrosslineBase.pre_create(self)
-        self.timestamp = int(time.time())
+        if not hasattr(self, "timestamp") or not self.timestamp:
+            self.timestamp = int(time.time())
