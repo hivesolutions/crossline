@@ -37,13 +37,22 @@ class PicaAdaptTest(unittest.TestCase):
         result = pica_adapt._res_movement("username")
         self.assertEqual(result, "Duplicado")
 
-        result = pica_adapt._res_movement("username", timestamp = int(time.time() + 240))
+        result = pica_adapt._res_movement(
+            "username",
+            timestamp = int(time.time() + crossline.PicaAdapter.DUPLICATE_THRESHOLD + 1)
+        )
         self.assertEqual(result, "Entrada")
 
         crossline.EnterAction.enter_s("username", info = {"pica:movimento": "Entrada"})
 
-        result = pica_adapt._res_movement("username", timestamp = int(time.time() + 240))
+        result = pica_adapt._res_movement(
+            "username",
+            timestamp = int(time.time() + crossline.PicaAdapter.DUPLICATE_THRESHOLD + 1)
+        )
         self.assertEqual(result, "Saída")
 
-        result = pica_adapt._res_movement("username", timestamp = int(time.time() + 86401))
+        result = pica_adapt._res_movement(
+            "username",
+            timestamp = int(time.time() + crossline.PicaAdapter.TURN_THRESHOLD + 1)
+        )
         self.assertEqual(result, "Entrada")
