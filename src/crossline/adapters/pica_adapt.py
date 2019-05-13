@@ -58,7 +58,9 @@ class PicaAdapter(base.BaseAdapter):
         company = appier.conf("PICA_COMPANY", cast = int)
 
         # resolves the kind of movement in context and then sets it under the
-        # info dictionary, to be stored latter
+        # info dictionary to be stored latter, notice that the saving of the
+        # entity related with the enter action is validated so that no extra
+        # storage occurs for the "duplicated" enter operations
         movement = self._res_movement(entity)
         if not movement in ("Duplicado",): info["pica:movimento"] = movement
         info["save"] &= info.get("save", True) and not movement in ("Duplicado",)
