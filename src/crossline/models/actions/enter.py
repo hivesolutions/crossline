@@ -23,11 +23,19 @@ class EnterAction(action.Action):
 
     @classmethod
     def latest(cls, identifier):
-        return cls.get(sort = [("timestamp", -1), ("id", -1)], raise_e = False)
+        return cls.get(
+            entity = identifier,
+            sort = [("timestamp", -1), ("id", -1)],
+            raise_e = False
+        )
 
     @classmethod
     def last(cls, identifier, limit = 2):
-        return cls.find(sort = [("timestamp", -1), ("id", -1)], limit = limit)
+        return cls.find(
+            entity = identifier,
+            sort = [("timestamp", -1), ("id", -1)],
+            limit = limit
+        )
 
     @classmethod
     def enter_s(
