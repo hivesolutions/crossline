@@ -20,10 +20,11 @@ class Action(base.CrosslineBase):
     )
 
     info = appier.field(
-        type = dict
+        type = dict,
+        immutable = True,
+        observations = """Extra information associated with
+        the action that can be used as a storage media"""
     )
-    """ Extra information associated with the action that
-    can be used as a storage media """
 
     @classmethod
     def list_names(cls):
