@@ -25,7 +25,12 @@ class LocalAdapter(base.BaseAdapter):
         key = payload.get("key", None)
         if not entity or not key: return
         if not info.get("save", True): return
-        enter = crossline.EnterAction.enter_s(entity, key = key, verify = True)
+        enter = crossline.EnterAction.enter_s(
+            entity,
+            info = info,
+            key = key,
+            verify = True
+        )
         info.update(
             enter = dict(
                 timestamp = enter.timestamp,
