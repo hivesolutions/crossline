@@ -69,6 +69,10 @@ class PicaAdapter(base.BaseAdapter):
         if not movement in ("Duplicado",): info["pica:movimento"] = movement
         info["save"] = info.get("save", True) and not movement in ("Duplicado",)
 
+        # in case the movement is part of the "blacklisted" ones the control flow
+        # should return immediately to avoid remote communication
+        if movement in ("Duplicado",): return
+
         # runs the concrete HTTP operation, effectively persisting the
         # information on the external service
         appier.post(
