@@ -9,6 +9,10 @@ import crossline
 
 from . import base
 
+DUPLICATE_THRESHOLD = 120
+
+TURN_THRESHOLD = 50400
+
 class PicaAdapter(base.BaseAdapter):
     """
     Simple adapter for the PicaPinto website to be used
@@ -81,8 +85,8 @@ class PicaAdapter(base.BaseAdapter):
         timestamp = timestamp or time.time()
         latest = crossline.EnterAction.latest(entity)
         if not latest: return "Entrada"
-        if timestamp - latest.timestamp < 120: return "Duplicado"
-        if timestamp - latest.timestamp > 86400: return "Entrada"
+        if timestamp - latest.timestamp < DUPLICATE_THRESHOLD: return "Duplicado"
+        if timestamp - latest.timestamp > TURN_THRESHOLD: return "Entrada"
         movement = latest.info.get("pica:movimento", "Entrada")
         if movement == "Entrada": return "Saída"
         return "Entrada"
