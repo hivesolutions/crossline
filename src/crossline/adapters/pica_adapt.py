@@ -67,7 +67,7 @@ class PicaAdapter(base.BaseAdapter):
         # storage occurs for the "duplicated" enter operations
         movement = self._res_movement(entity)
         if not movement in ("Duplicado",): info["pica:movimento"] = movement
-        info["save"] &= info.get("save", True) and not movement in ("Duplicado",)
+        info["save"] = info.get("save", True) and not movement in ("Duplicado",)
 
         # runs the concrete HTTP operation, effectively persisting the
         # information on the external service
