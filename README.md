@@ -6,14 +6,18 @@ Simple event pipping and storing infra-structure to be for crossing, entering an
 
 There's currently three adapters for the Crossline infra-structure:
 
-* `LocalAdapter` - For local data source storage of information.
-* `OmniAdapter` - For the push of information from the Crossline to an Omni instance for warehousing.
-* `PicaAdapter` - To enable integration of enter operation in [PicaPonto](https://picaponto.pt) service.
+| Name | Description |
+| ----- | ----- |
+| `LocalAdapter` | For local data source storage of information. |
+| `OmniAdapter` | For the push of information from the Crossline to an Omni instance for warehousing. |
+| `PicaAdapter` |  To enable integration of enter operation in [PicaPonto](https://picaponto.pt) service. |
 
 ## Configuration
 
-* `PICA_BASE_URL` (`str`) - The base URL to access [PicaPonto](https://picaponto.pt) (defaults to `https://picaponto.pt/`)
-* `PICA_COMPANY` (`int`) - The identifier of [PicaPonto](https://picaponto.pt) company associated (defaults to `None`)
+| Name | Type | Description |
+| ----- | ----- | ----- |
+| **PICA_BASE_URL** | `str` | The base URL to access [PicaPonto](https://picaponto.pt) (defaults to `https://picaponto.pt/`).
+| **PICA_COMPANY** | `int` | The identifier of [PicaPonto](https://picaponto.pt) company associated (defaults to `None`).
 
 ## License
 
