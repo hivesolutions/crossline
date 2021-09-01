@@ -25,7 +25,7 @@ Crossline is currently licensed under the [Apache License, Version 2.0](http://w
 
 ## Build Automation
 
-[![Build Status](https://travis-ci.com/hivesolutions/crossline.svg?branch=master)](https://travis-ci.com/hivesolutions/crossline)
+[![Build Status](https://app.travis-ci.com/hivesolutions/crossline.svg?branch=master)](https://travis-ci.com/github/hivesolutions/crossline)
 [![Coverage Status](https://coveralls.io/repos/hivesolutions/crossline/badge.svg?branch=master)](https://coveralls.io/r/hivesolutions/crossline?branch=master)
 [![PyPi Status](https://img.shields.io/pypi/v/crossline.svg)](https://pypi.python.org/pypi/crossline)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://www.apache.org/licenses/)
