@@ -29,8 +29,8 @@ setuptools.setup(
     },
     install_requires = [
         "appier",
-        "appier_extras",
-        "omni_api"
+        "appier-extras",
+        "omni-api"
     ],
     classifiers = [
         "Development Status :: 3 - Alpha",
