@@ -14,10 +14,13 @@ There's currently three adapters for the Crossline infra-structure:
 
 ## Configuration
 
-| Name              | Type  | Default                 | Description                                                             |
-| ----------------- | ----- | ----------------------- | ----------------------------------------------------------------------- |
-| **PICA_BASE_URL** | `str` | `https://picaponto.pt/` | The base URL to access [PicaPonto](https://picaponto.pt).               |
-| **PICA_COMPANY**  | `int` | `None`                  | The identifier of [PicaPonto](https://picaponto.pt) company associated. |
+| Name              | Type  | Default                 | Description                                                                                                                                                              |
+| ----------------- | ----- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **LOCAL_ENABLED** | `str` | `True`                  | If the Local adapter is enabled.                                                                                                                                         |
+| **OMNI_ENABLED**  | `str` | `True`                  | If the Onni adapter is enabled, notice that additional values are required to make the adapter ready.                                                                    |
+| **PICA_ENABLED**  | `str` | `True`                  | If the [PicaPonto](https://picaponto.pt) adapter is enabled, notice that additional requirements (eg: company definitions) may apply to properly make the adapter ready. |
+| **PICA_BASE_URL** | `str` | `https://picaponto.pt/` | The base URL to access [PicaPonto](https://picaponto.pt).                                                                                                                |
+| **PICA_COMPANY**  | `int` | `None`                  | The identifier of [PicaPonto](https://picaponto.pt) company associated.                                                                                                  |
 
 ## License
 

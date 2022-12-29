@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+import appier
+
 import crossline
 
 from . import base
@@ -13,7 +15,8 @@ class LocalAdapter(base.BaseAdapter):
 
     @classmethod
     def ready(cls):
-        return True
+        enabled = appier.conf("OMNI_ENABLED", True, cast = bool)
+        return enabled
 
     def cross(self, info = None, app = None, *args, **kwargs):
         pass

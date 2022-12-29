@@ -14,10 +14,11 @@ class OmniAdapter(base.BaseAdapter):
 
     @classmethod
     def ready(cls):
+        enabled = appier.conf("OMNI_ENABLED", True, cast = bool)
         base_url = appier.conf("OMNI_BASE_URL")
         username = appier.conf("OMNI_USERNAME")
         password = appier.conf("OMNI_PASSWORD")
-        return True if base_url and username and password else False
+        return True if enabled and base_url and username and password else False
 
     def cross(self, info = None, app = None, *args, **kwargs):
         api = self.get_api()
