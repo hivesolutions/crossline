@@ -9,10 +9,11 @@ import appier
 
 import crossline
 
+
 class CounterTest(unittest.TestCase):
 
     def setUp(self):
-        self.app = crossline.CrosslineApp(level = logging.ERROR)
+        self.app = crossline.CrosslineApp(level=logging.ERROR)
 
     def tearDown(self):
         self.app.unload()
@@ -22,9 +23,7 @@ class CounterTest(unittest.TestCase):
     def test_basic(self):
         current = datetime.datetime.utcnow()
 
-        counter = crossline.CounterFact.increment_s(
-            app = "test", current = current
-        )
+        counter = crossline.CounterFact.increment_s(app="test", current=current)
 
         self.assertEqual(counter["action"], "cross")
         self.assertEqual(counter["count"], 1)
@@ -36,9 +35,7 @@ class CounterTest(unittest.TestCase):
         self.assertEqual(facts[0].app, "test")
         self.assertEqual(facts[0].counter, 1)
 
-        counter = crossline.CounterFact.increment_s(
-            app = "test", current = current
-        )
+        counter = crossline.CounterFact.increment_s(app="test", current=current)
 
         self.assertEqual(counter["action"], "cross")
         self.assertEqual(counter["count"], 2)
@@ -50,11 +47,9 @@ class CounterTest(unittest.TestCase):
         self.assertEqual(facts[0].app, "test")
         self.assertEqual(facts[0].counter, 2)
 
-        counter = crossline.CounterFact.increment_s(
-            app = "other", current = current
-        )
+        counter = crossline.CounterFact.increment_s(app="other", current=current)
 
-        facts = crossline.CounterFact.find(sort = [("app", -1)])
+        facts = crossline.CounterFact.find(sort=[("app", -1)])
 
         self.assertEqual(len(facts), 2)
         self.assertEqual(facts[0].app, "test")

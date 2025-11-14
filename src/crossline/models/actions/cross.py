@@ -3,5 +3,6 @@
 
 from . import action
 
+
 class CrossAction(action.Action):
     pass

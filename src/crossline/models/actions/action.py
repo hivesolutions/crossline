@@ -7,23 +7,24 @@ import appier
 
 from .. import base
 
+
 class Action(base.CrosslineBase):
 
     timestamp = appier.field(
-        type = int,
-        index = "all",
-        safe = True,
-        immutable = True,
-        meta = "datetime",
-        observations = """The snapshot timestamp for when
-        the current action has occurred"""
+        type=int,
+        index="all",
+        safe=True,
+        immutable=True,
+        meta="datetime",
+        observations="""The snapshot timestamp for when
+        the current action has occurred""",
     )
 
     info = appier.field(
-        type = dict,
-        immutable = True,
-        observations = """Extra information associated with
-        the action that can be used as a storage media"""
+        type=dict,
+        immutable=True,
+        observations="""Extra information associated with
+        the action that can be used as a storage media""",
     )
 
     @classmethod
@@ -40,7 +41,7 @@ class Action(base.CrosslineBase):
 
     @classmethod
     def get_by_entity(cls, entity, *args, **kwargs):
-        return cls.get_e(entity = entity, *args, **kwargs)
+        return cls.get_e(entity=entity, *args, **kwargs)
 
     def pre_create(self):
         base.CrosslineBase.pre_create(self)

@@ -3,14 +3,15 @@
 
 import appier
 
+
 class BaseAdapter(object):
 
     @classmethod
     def ready(cls):
         return True
 
-    def cross(self, app = None, *args, **kwargs):
+    def cross(self, app=None, *args, **kwargs):
         raise appier.NotImplementedError()
 
-    def enter(self, app = None, *args, **kwargs):
+    def enter(self, app=None, *args, **kwargs):
         raise appier.NotImplementedError()

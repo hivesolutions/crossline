@@ -5,6 +5,7 @@ import appier
 
 import crossline
 
+
 class WebController(appier.Controller, appier.Mongo):
 
     def __init__(self, owner, *args, **kwargs):
@@ -14,20 +15,14 @@ class WebController(appier.Controller, appier.Mongo):
 
     @appier.route("/cross", ("GET", "POST"))
     @appier.route("/<str:app>/cross", ("GET", "POST"))
-    def cross(self, app = None):
+    def cross(self, app=None):
         return crossline.CounterFact.increment_s(
-            app,
-            adapters = self.adapters,
-            action = "cross",
-            payload = appier.get_object()
+            app, adapters=self.adapters, action="cross", payload=appier.get_object()
         )
 
     @appier.route("/enter", ("GET", "POST"))
     @appier.route("/<str:app>/enter", ("GET", "POST"))
-    def enter(self, app = None):
+    def enter(self, app=None):
         return crossline.CounterFact.increment_s(
-            app,
-            adapters = self.adapters,
-            action = "enter",
-            payload = appier.get_object()
+            app, adapters=self.adapters, action="enter", payload=appier.get_object()
         )

@@ -4,6 +4,7 @@
 from .. import base
 from .. import mixins
 
+
 class Fact(base.CrosslineBase, mixins.Day):
     """
     The abstract model class that represents a fact,
