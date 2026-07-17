@@ -15,3 +15,7 @@ class BaseAdapter(object):
 
     def enter(self, app=None, *args, **kwargs):
         raise appier.NotImplementedError()
+
+    @property
+    def logger(self):
+        return appier.get_app().get_logger()

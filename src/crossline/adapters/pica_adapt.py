@@ -79,6 +79,13 @@ class PicaAdapter(base.BaseAdapter):
         if movement in ("Duplicado",):
             return
 
+        # prints a debug message with information about the enter
+        # operation that is going to be sent to the PicaPonto service
+        self.logger.debug(
+            "Sending '%s' movement to PicaPonto for entity '%s' with info '%s'"
+            % (movement, entity, info)
+        )
+
         # runs the concrete HTTP operation, effectively persisting the
         # information on the external service
         appier.post(

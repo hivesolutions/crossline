@@ -22,6 +22,12 @@ class OmniAdapter(base.BaseAdapter):
         return True if enabled and base_url and username and password else False
 
     def cross(self, info=None, app=None, *args, **kwargs):
+        # prints a debug message with information about the cross
+        # operation that is going to be pushed to the Omni service
+        self.logger.debug(
+            "Pushing cross snapshot to Omni for app '%s' with info '%s'" % (app, info)
+        )
+
         api = self.get_api()
         api.entries_sales_snapshot(dict(entry_chunk=dict(store_id=app, count=1)))
 

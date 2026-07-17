@@ -31,6 +31,13 @@ class LocalAdapter(base.BaseAdapter):
             return
         if not info.get("save", True):
             return
+
+        # prints a debug message with information about the enter
+        # action that is about to be created for the entity
+        self.logger.debug(
+            "Creating enter action for entity '%s' with info '%s'" % (entity, info)
+        )
+
         enter = crossline.EnterAction.enter_s(entity, info=info, key=key, verify=True)
         info.update(
             enter=dict(timestamp=enter.timestamp, entity=enter.entity.identifier)
