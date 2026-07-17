@@ -49,7 +49,7 @@ class Entity(base.CrosslineBase):
         ),
     )
     def verify_g(cls, identifier, key, app=None):
-        entity = cls.get(identifier=identifier, app=app)
+        entity = cls.get(identifier=identifier, app=app or None)
         appier.verify(entity.key == key, message="Missmatch in key")
 
     @classmethod

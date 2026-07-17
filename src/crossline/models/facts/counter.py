@@ -30,6 +30,7 @@ class CounterFact(fact.Fact):
     def increment_s(
         cls, app, adapters=[], current=None, action="cross", *args, **kwargs
     ):
+        app = app or None
         current = current or datetime.datetime.utcnow()
 
         fact = cls.get(
