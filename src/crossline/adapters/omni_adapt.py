@@ -23,9 +23,9 @@ class OmniAdapter(base.BaseAdapter):
 
     def cross(self, info=None, app=None, *args, **kwargs):
         # prints a debug message with information about the cross
-        # operation that is going to be pushed to the Omni service
+        # snapshot that is about to be created in the Omni service
         self.logger.debug(
-            "Pushing cross snapshot to Omni for app '%s' with info '%s'" % (app, info)
+            "Creating cross snapshot in Omni for app '%s' with info '%s'" % (app, info)
         )
 
         api = self.get_api()

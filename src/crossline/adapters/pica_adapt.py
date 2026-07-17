@@ -80,9 +80,9 @@ class PicaAdapter(base.BaseAdapter):
             return
 
         # prints a debug message with information about the enter
-        # operation that is going to be sent to the PicaPonto service
+        # movement that is about to be created in the PicaPonto service
         self.logger.debug(
-            "Sending '%s' movement to PicaPonto for entity '%s' with info '%s'"
+            "Creating '%s' movement in PicaPonto for entity '%s' with info '%s'"
             % (movement, entity, info)
         )
 
